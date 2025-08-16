@@ -155,9 +155,6 @@ Please follow the repository style and run any lint/format steps before PRing.
 
 ## Screenshots (placeholders)
 
-Add your screenshots under `assets/screenshots/` and reference them in README like:
-![Popup UI](assets/screenshots/popup.png)
-![Autofill Demo](assets/screenshots/autofill.png)
 
 ---
 
