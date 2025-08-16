@@ -1,0 +1,74 @@
+/* App base */
+* { box-sizing: border-box; }
+:root {
+  --bg: #f7f7fb;
+  --panel: #ffffff;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --text: #111827;
+  --primary: #4f46e5;
+  --primary-600: #4338ca;
+  --danger: #dc2626;
+  --shadow: 0 1px 2px rgba(0,0,0,.05), 0 2px 8px rgba(0,0,0,.06);
+  --radius: 14px;
+}
+body.app { min-width: 360px; max-width: 440px; margin: 0; font: 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; color: var(--text); background: var(--bg); }
+.header { padding: 16px 16px 8px; }
+.header h1 { margin: 0 0 4px; font-size: 18px; font-weight: 700; }
+.muted { color: var(--muted); font-size: 12px; margin: 0; }
+
+.tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--border); padding: 0 16px; }
+.tab-btn { appearance: none; border: 0; background: transparent; padding: 10px 10px; font-weight: 600; color: #374151; border-bottom: 2px solid transparent; cursor: pointer; }
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+.main { padding: 14px 16px 16px; display: grid; gap: 14px; }
+.tab-panel.hidden { display: none; }
+
+.grid { display: grid; gap: 12px; }
+.grid.two { grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 420px) { .grid.two { grid-template-columns: 1fr; } }
+
+.field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.input, input[type="text"], input[type="email"], input[type="number"], input[type="date"], select, textarea {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: #fff; outline: none; transition: box-shadow .15s, border-color .15s;
+}
+.input:focus, input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(79,70,229,.15); }
+textarea { resize: vertical; }
+.checkbox { width: 18px; height: 18px; }
+
+.card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 12px; }
+.stack { display: grid; gap: 12px; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.panel-head h2 { margin: 0; font-size: 14px; font-weight: 700; }
+
+.row { display: flex; align-items: center; }
+.row-right { display: flex; align-items: center; justify-content: flex-end; }
+.gap { gap: 8px; }
+.mt { margin-top: 8px; }
+.grow { flex: 1 1 auto; }
+
+.btn { appearance: none; border: 0; border-radius: var(--radius); padding: 8px 12px; font-weight: 600; cursor: pointer; }
+.btn.primary { background: var(--primary); color: #fff; }
+.btn.primary:hover { background: var(--primary-600); }
+.btn.outline { background: transparent; color: var(--primary); border: 1px solid var(--primary); }
+.btn.outline:hover { background: rgba(79,70,229,.06); }
+.btn-secondary { background: #eef2ff; color: #3730a3; border: 1px solid #c7d2fe; border-radius: var(--radius); padding: 6px 10px; font-weight: 700; cursor: pointer; }
+.btn.subtle { background: #f3f4f6; color: #374151; }
+.btn.subtle:hover { background: #e5e7eb; }
+.btn.danger { background: var(--danger); color: #fff; }
+.btn.danger:hover { filter: brightness(0.95); }
+
+.lbl { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+
+.dialog { border: none; padding: 0; border-radius: var(--radius); width: min(92%, 420px); }
+.dialog::backdrop { background: rgba(0,0,0,.35); }
+.dialog-card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); }
+.dialog-head { padding: 10px 12px; border-bottom: 1px solid var(--border); font-weight: 700; }
+.dialog-body { padding: 12px; display: grid; gap: 10px; }
+.dialog-foot { padding: 10px 12px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 8px; }
+.hint { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+.toast { position: fixed; left: 50%; bottom: 10px; transform: translateX(-50%); background: #111827; color: #fff; padding: 8px 12px; border-radius: 999px; font-size: 12px; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+.toast.show { opacity: 1; }
+.hidden { display: none !important; }

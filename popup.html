@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Smart Form Filler Pro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      margin: 0;
+      background: #f9fafb;
+      color: #111827;
+      width: 360px;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      padding: 1rem;
+      text-align: center;
+      background: #2563eb;
+      color: white;
+    }
+    .header h1 { margin: 0; font-size: 1.25rem; }
+    .header .muted { font-size: 0.8rem; opacity: 0.9; }
+    .tabs { display: flex; border-bottom: 1px solid #e5e7eb; background: #fff; }
+    .tab-btn {
+      flex: 1; padding: 0.5rem; border: none; background: none;
+      font-weight: 500; cursor: pointer;
+    }
+    .tab-btn.active { border-bottom: 2px solid #2563eb; color: #2563eb; }
+    .main { flex: 1; overflow-y: auto; padding: 1rem; }
+    .tab-panel.hidden { display: none; }
+    .grid { display: grid; gap: 0.75rem; }
+    .grid.two { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .field label { font-size: 0.8rem; font-weight: 500; display: block; margin-bottom: 0.25rem; }
+    .field input, .field textarea, .field select {
+      width: 100%; padding: 0.5rem; border: 1px solid #d1d5db;
+      border-radius: 0.375rem; font-size: 0.9rem;
+    }
+    .panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+    .card {
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 0.5rem;
+      padding: 0.75rem; margin-bottom: 0.75rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .row-right { display: flex; justify-content: flex-end; }
+    .row { display: flex; align-items: center; }
+    .gap { gap: 0.5rem; }
+    .mt-2 { margin-top: 0.5rem; }
+    .btn {
+      padding: 0.4rem 0.75rem; border-radius: 0.375rem;
+      font-size: 0.85rem; cursor: pointer; border: none;
+    }
+    .btn.primary { background: #2563eb; color: white; }
+    .btn.secondary { background: #f3f4f6; color: #111827; }
+    .btn.outline { border: 1px solid #2563eb; background: white; color: #2563eb; }
+    .btn.subtle { background: transparent; color: #6b7280; }
+    .btn.danger { background: #dc2626; color: white; }
+    .btn.grow { flex: 1; }
+    .stack > * + * { margin-top: 0.75rem; }
+    .dialog { border: none; border-radius: 0.5rem; padding: 0; }
+    .dialog-card { padding: 1rem; background: white; border-radius: 0.5rem; width: 280px; }
+    .dialog-head h3 { margin: 0 0 0.5rem; }
+    .dialog-foot { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.75rem; }
+    .toast {
+      position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%);
+      background: #2563eb; color: white; padding: 0.5rem 1rem;
+      border-radius: 9999px; font-size: 0.85rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .hidden { display: none; }
+    .muted { color: #6b7280; font-size: 0.85rem; }
+    .hint { font-size: 0.7rem; color: #6b7280; }
+  </style>
+</head>
+<body>
+  <header class="header">
+  <h1>Smart Form Filler Pro</h1>
+  <p class="muted">Save your details once, fill forms anywhere.</p>
+</header>
+
+<style>
+  .header {
+    text-align: center; /* optional: center align */
+    padding: 20px;
+  }
+
+  .header h1 {
+    color: white;
+    font-size: 1.5rem; /* increase size */
+    font-weight: bold; /* bold text */
+  }
+
+  .header p {
+    color: white;
+    font-size: 1.2rem; /* slightly bigger text */
+    font-weight: 600;  /* semi-bold */
+  }
+</style>
+
+
+  <!-- Tabs -->
+  <nav class="tabs">
+    <button data-tab="basic" class="tab-btn active">Basic</button>
+    <button data-tab="experience" class="tab-btn">Experience</button>
+    <button data-tab="education" class="tab-btn">Education</button>
+    <button data-tab="preferences" class="tab-btn">Preferences</button>
+    <button data-tab="custom" class="tab-btn">Custom</button>
+  </nav>
+
+  <!-- Main -->
+  <main class="main">
+    <!-- BASIC (30+ fields) -->
+    <section data-panel="basic" class="tab-panel">
+      <div class="grid">
+        <!-- Name Fields -->
+        <div class="field"><label>First Name</label><input type="text" id="firstName" placeholder="First Name" /></div>
+        <div class="field"><label>Middle Name</label><input type="text" id="middleName" placeholder="Middle Name" /></div>
+        <div class="field"><label>Last Name</label><input type="text" id="lastName" placeholder="Last Name" /></div>
+        <div class="field"><label>Full Name</label><input type="text" id="fullName" placeholder="Full Name" /></div>
+
+        <!-- Personal Info -->
+        <div class="field"><label>Date of Birth</label><input type="date" id="dob" /></div>
+        <div class="field">
+          <label>Gender</label>
+          <select id="gender">
+            <option>Male</option><option>Female</option><option>Non-Binary</option><option>Prefer not to say</option>
+          </select>
+        </div>
+        <div class="field"><label>Nationality</label><input type="text" id="nationality" placeholder="Nationality" /></div>
+        <div class="field"><label>Marital Status</label><input type="text" id="maritalStatus" placeholder="Single/Married" /></div>
+        <div class="field"><label>Languages Known</label><input type="text" id="languages" placeholder="English, Hindi" /></div>
+        <div class="field"><label>Blood Group</label><input type="text" id="bloodGroup" placeholder="O+, A-" /></div>
+
+        <!-- Contact Info -->
+        <div class="field"><label>Email</label><input type="email" id="email" placeholder="you@example.com" /></div>
+        <div class="field"><label>Primary Phone</label><input type="text" id="phone" placeholder="+91 9xxxxxxxxx" /></div>
+        <div class="field"><label>Alternate Phone</label><input type="text" id="altPhone" placeholder="+91 9xxxxxxxxx" /></div>
+        <div class="field"><label>LinkedIn</label><input type="url" id="linkedin" placeholder="LinkedIn Profile URL" /></div>
+        <div class="field"><label>Portfolio/Website</label><input type="url" id="portfolio" placeholder="Portfolio Website" /></div>
+        <div class="field"><label>GitHub</label><input type="url" id="github" placeholder="GitHub Profile" /></div>
+        <div class="field"><label>Twitter</label><input type="url" id="twitter" placeholder="@username" /></div>
+
+        <!-- Address -->
+        <div class="field"><label>Street Address</label><input type="text" id="street" placeholder="Street, Area" /></div>
+        <div class="grid two">
+          <div class="field"><label>City</label><input type="text" id="city" /></div>
+          <div class="field"><label>State/Province</label><input type="text" id="state" /></div>
+        </div>
+        <div class="grid two">
+          <div class="field"><label>Zip Code</label><input type="text" id="zip" /></div>
+          <div class="field"><label>Country</label><input type="text" id="country" /></div>
+        </div>
+
+        <!-- Job & Preferences -->
+        <div class="field"><label>Position Applied For</label><input type="text" id="appliedFor" /></div>
+        <div class="field"><label>How Did You Hear About Us?</label><input type="text" id="refSource" /></div>
+        <div class="field"><label>Availability Start Date</label><input type="date" id="availability" /></div>
+        <div class="field"><label>Expected Salary</label><input type="text" id="salary" placeholder="Annual salary expectation" /></div>
+
+        <!-- Extra -->
+        <div class="field"><label>Emergency Contact Name</label><input type="text" id="emergencyName" /></div>
+        <div class="field"><label>Emergency Contact Phone</label><input type="text" id="emergencyPhone" /></div>
+        <div class="field"><label>Summary</label><textarea id="summary" rows="3" placeholder="Short professional summary"></textarea></div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE (same as before) -->
+    <section data-panel="experience" class="tab-panel hidden">
+      <div class="panel-head">
+        <h2>Work Experience</h2>
+        <button id="addExperience" class="btn secondary">+ Add</button>
+      </div>
+      <div id="experienceList" class="stack"></div>
+      <template id="experienceItemTpl">
+        <div class="card">
+          <div class="grid two">
+            <div class="field"><label>Company</label><input type="text" data-key="company" /></div>
+            <div class="field"><label>Role</label><input type="text" data-key="role" /></div>
+            <div class="field"><label>Start Date</label><input type="date" data-key="startDate" /></div>
+            <div class="field"><label>End Date</label><input type="date" data-key="endDate" /></div>
+          </div>
+          <div class="field"><label>Description</label><textarea rows="4" data-key="description"></textarea></div>
+          <div class="row-right gap">
+            <button class="btn subtle" data-action="move-up">↑</button>
+            <button class="btn subtle" data-action="move-down">↓</button>
+            <button class="btn danger" data-action="delete">Delete</button>
+          </div>
+        </div>
+      </template>
+    </section>
+
+    <!-- EDUCATION (same) -->
+    <section data-panel="education" class="tab-panel hidden">
+      <div class="panel-head">
+        <h2>Education</h2>
+        <button id="addEducation" class="btn secondary">+ Add</button>
+      </div>
+      <div id="educationList" class="stack"></div>
+      <template id="educationItemTpl">
+        <div class="card">
+          <div class="grid two">
+            <div class="field"><label>Institution</label><input type="text" data-key="school" /></div>
+            <div class="field"><label>Degree</label><input type="text" data-key="degree" /></div>
+            <div class="field"><label>Start Year</label><input type="number" data-key="startYear" /></div>
+            <div class="field"><label>End Year</label><input type="number" data-key="endYear" /></div>
+          </div>
+          <div class="field"><label>Notes</label><textarea rows="3" data-key="notes"></textarea></div>
+          <div class="row-right gap">
+            <button class="btn subtle" data-action="move-up">↑</button>
+            <button class="btn subtle" data-action="move-down">↓</button>
+            <button class="btn danger" data-action="delete">Delete</button>
+          </div>
+        </div>
+      </template>
+    </section>
+
+    <!-- PREFERENCES (same) -->
+    <section data-panel="preferences" class="tab-panel hidden">
+      <div class="grid two">
+        <div class="field"><label>Preferred Role</label><input id="prefRole" type="text" /></div>
+        <div class="field"><label>Preferred Location</label><input id="prefLocation" type="text" /></div>
+        <div class="field"><label>Employment Type</label>
+          <select id="prefEmployment">
+            <option>Full-time</option><option>Internship</option><option>Contract</option><option>Part-time</option>
+          </select>
+        </div>
+        <div class="field"><label>Notice Period (days)</label><input id="noticePeriod" type="number" /></div>
+      </div>
+    </section>
+
+    <!-- CUSTOM (same) -->
+    <section data-panel="custom" class="tab-panel hidden">
+      <div class="panel-head">
+        <h2>Custom Fields</h2>
+        <button id="addCustomFieldBtn" class="btn secondary">+ Add</button>
+      </div>
+      <p class="muted">Create extra fields (text, textarea, number, date, checkbox, select).</p>
+      <div id="customFieldsContainer" class="stack mt-2"></div>
+      <dialog id="customFieldDialog" class="dialog">
+        <form method="dialog" class="dialog-card">
+          <div class="dialog-head"><h3>New Custom Field</h3></div>
+          <div class="dialog-body">
+            <div class="field"><label>Label</label><input id="cfLabel" /></div>
+            <div class="field"><label>Key</label><input id="cfKey" placeholder="portfolio, github, linkedin" /></div>
+            <div class="field"><label>Type</label>
+              <select id="cfType">
+                <option value="text">Text</option><option value="textarea">Textarea</option>
+                <option value="number">Number</option><option value="date">Date</option>
+                <option value="checkbox">Checkbox</option><option value="select">Select</option>
+              </select>
+            </div>
+            <div id="cfOptionsWrap" class="field hidden">
+              <label>Options (comma-separated)</label><input id="cfOptions" />
+            </div>
+          </div>
+          <div class="dialog-foot">
+            <button type="reset" value="cancel" class="btn subtle">Cancel</button>
+            <button id="cfSaveBtn" class="btn primary" value="default">Save</button>
+          </div>
+        </form>
+      </dialog>
+    </section>
+
+    <!-- Save/Fill -->
+    <div class="row gap">
+      <button id="saveBtn" class="btn primary grow">Save</button>
+      <button id="fillBtn" class="btn outline grow">Fill Form</button>
+    </div>
+
+    <div id="toast" class="toast hidden">Saved</div>
+  </main>
+  <script src="popup.js" defer></script>
+</body>
+</html>

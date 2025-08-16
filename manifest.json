@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Smart Form Filler Pro",
+  "version": "1.0.1",
+  "description": "Save profile + custom fields and fill forms in one click.",
+  "permissions": ["storage", "activeTab", "tabs"],
+  "action": { "default_popup": "popup.html", "default_title": "Smart Form Filler Pro" },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
